@@ -17,7 +17,6 @@ public class SpawnManager : MonoBehaviour
         _stopSpawning = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

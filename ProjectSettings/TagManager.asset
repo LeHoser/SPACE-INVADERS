@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - SpawnManager
   - Play Area
+  - Trishot
   layers:
   - Default
   - TransparentFX

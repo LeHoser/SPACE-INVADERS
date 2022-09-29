@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     private int _playerHealth;
     [SerializeField]
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private TripleShot _trishot;
+    [SerializeField]
+    private bool _trishotUpgrade;
 
     private void Awake()
     {
@@ -24,10 +28,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _trishotUpgrade = false;
         _playerHealth = 3;
         Cursor.lockState = CursorLockMode.Locked;
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _trishot = GameObject.Find("Trishot").GetComponent<TripleShot>();
 
         if(_spawnManager == null)
         {
@@ -39,11 +45,21 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
-        if(Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if(Input.GetKeyDown(KeyCode.Space) && _trishotUpgrade == false &&  Time.time > _canFire)
         {
             _canFire = Time.time + _fireRate;
             Vector3 offSet = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
             Instantiate(_laserPrefab, offSet, Quaternion.identity);
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && _trishotUpgrade == true && Time.time > _canFire)
+        {
+            _canFire = Time.time + _fireRate;
+            Vector3 offSetLeft = new Vector3(transform.position.x - 0.4f, transform.position.y + 1, 0);
+            Vector3 offSetCenter = new Vector3(transform.position.x, transform.position.y + 1, 0);
+            Vector3 offSetRight = new Vector3(transform.position.x + 0.4f, transform.position.y + 1, 0);
+            Instantiate(_laserPrefab, offSetLeft, Quaternion.identity);
+            Instantiate(_laserPrefab, offSetCenter, Quaternion.identity);
+            Instantiate(_laserPrefab, offSetRight, Quaternion.identity);
         }
     }
 
@@ -79,6 +95,16 @@ public class Player : MonoBehaviour
         {
             Destroy(this.gameObject);
             _spawnManager.OnPlayerDeath();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Trishot"))
+        {
+            _trishotUpgrade = true;
+            _trishot.OnPlayerPickUp();
+            print("Player has picked up the upgrade");
         }
     }
 }
