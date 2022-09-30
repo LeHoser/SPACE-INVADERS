@@ -25,8 +25,8 @@ public class TripleShot : MonoBehaviour
         transform.Translate(direction);
     }
 
-    public void OnPlayerPickUp()
+    /*public void OnPlayerPickUp()
     {
         _tripleShot.SetActive(true);
-    }
+    }*/
 }

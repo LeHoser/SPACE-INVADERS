@@ -5,19 +5,23 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject enemy;
+    public Player player;
 
     [SerializeField] private TripleShot _trishot;
     public float enemySpeed;
-    private bool _spawnTriShot;
+    [SerializeField] private bool _spawnTriShot;
+    [SerializeField] private bool _trishotPickedUp;
 
     private void Awake()
     {
         SpawnManager spawnManager = GetComponent<SpawnManager>();
+        Player player = GetComponent<Player>();
     }
 
     void Start()
     {
         _spawnTriShot = false;
+        _trishotPickedUp = false;
     }
 
     void Update()
@@ -47,12 +51,30 @@ public class EnemyController : MonoBehaviour
             int randomChance = Random.Range(1, 11);
             print(randomChance);
 
-            if(spawnNumber <= randomChance)
+            if(spawnNumber > randomChance)
             {
-                _spawnTriShot = true;
+                _spawnTriShot = false;
             }
 
-            if(_spawnTriShot == true)
+            if(spawnNumber == randomChance)
+            {
+                if (_trishotPickedUp == false)
+                {
+                    _spawnTriShot = true;
+                }
+                else if(_trishotPickedUp == true)
+                {
+                    _spawnTriShot = false;
+                }
+            }
+
+            if(_spawnTriShot == true && _trishotPickedUp == true)
+            {
+                Destroy(other.gameObject);
+                Destroy(this.gameObject);
+            }
+
+            else if (_spawnTriShot == true && _trishotPickedUp == false)
             {
                 Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, 0);
                 Destroy(other.gameObject);
@@ -79,5 +101,10 @@ public class EnemyController : MonoBehaviour
             other.transform.GetComponent<Player>().Damage();
             Destroy(this.gameObject);
         }
+    }
+
+    public void TrishotAcquired()
+    {
+        _trishotPickedUp = true;
     }
 }

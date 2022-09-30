@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _enemyPrefab;
-    [SerializeField]
-    private GameObject _enemyContainer;
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject _enemyContainer;
     public bool _stopSpawning;
+    public bool playerHasTriShot;
 
     void Start()
     {
         StartCoroutine(SpawnRoutine());
         _stopSpawning = false;
+        playerHasTriShot = false;
     }
 
     void Update()
@@ -37,5 +37,4 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
     }
-
 }

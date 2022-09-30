@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float _playerSpeed = 6.5f;
-    [SerializeField]
-    private GameObject _laserPrefab;
-    [SerializeField]
-    private float _fireRate = 0.35f;
-    [SerializeField]
-    private float _canFire = -1f;
-    [SerializeField]
-    private int _playerHealth;
-    [SerializeField]
-    private SpawnManager _spawnManager;
-    [SerializeField]
-    private TripleShot _trishot;
-    [SerializeField]
-    private bool _trishotUpgrade;
+    [SerializeField] private float _playerSpeed = 6.5f;
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private float _fireRate = 0.35f;
+    [SerializeField] private float _canFire = -1f;
+    [SerializeField] private int _playerHealth;
+    [SerializeField] private SpawnManager _spawnManager;
+    [SerializeField] private GameObject _enemy;
+    [SerializeField] private bool _trishotUpgrade;
 
     private void Awake()
     {
@@ -33,7 +25,6 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        _trishot = GameObject.Find("Trishot").GetComponent<TripleShot>();
 
         if(_spawnManager == null)
         {
@@ -54,9 +45,9 @@ public class Player : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Space) && _trishotUpgrade == true && Time.time > _canFire)
         {
             _canFire = Time.time + _fireRate;
-            Vector3 offSetLeft = new Vector3(transform.position.x - 0.4f, transform.position.y + 1, 0);
+            Vector3 offSetLeft = new Vector3(transform.position.x - 0.2f, transform.position.y + 1, 0);
             Vector3 offSetCenter = new Vector3(transform.position.x, transform.position.y + 1, 0);
-            Vector3 offSetRight = new Vector3(transform.position.x + 0.4f, transform.position.y + 1, 0);
+            Vector3 offSetRight = new Vector3(transform.position.x + 0.2f, transform.position.y + 1, 0);
             Instantiate(_laserPrefab, offSetLeft, Quaternion.identity);
             Instantiate(_laserPrefab, offSetCenter, Quaternion.identity);
             Instantiate(_laserPrefab, offSetRight, Quaternion.identity);
@@ -102,8 +93,9 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Trishot"))
         {
-            _trishotUpgrade = true;
-            _trishot.OnPlayerPickUp();
+            Destroy(other.gameObject);
+            _spawnManager.playerHasTriShot = true;
+            //_trishot.OnPlayerPickUp();
             print("Player has picked up the upgrade");
         }
     }
