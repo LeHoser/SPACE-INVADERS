@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             _spawnManager.playerHasTriShot = true;
+            _trishotUpgrade = true;
             //_trishot.OnPlayerPickUp();
             print("Player has picked up the upgrade");
         }

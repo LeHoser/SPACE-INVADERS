@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private TripleShot _trishot;
     public float enemySpeed;
     [SerializeField] private bool _spawnTriShot;
-    [SerializeField] private bool _trishotPickedUp;
+    public bool _trishotPickedUp = false;
 
     private void Awake()
     {
@@ -20,8 +20,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        _spawnTriShot = false;
-        _trishotPickedUp = false;
+        
     }
 
     void Update()
@@ -80,6 +79,7 @@ public class EnemyController : MonoBehaviour
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
                 Instantiate(_trishot, spawnPosition, Quaternion.identity);
+                _spawnTriShot = false;
             }
 
             else if(_spawnTriShot == false)

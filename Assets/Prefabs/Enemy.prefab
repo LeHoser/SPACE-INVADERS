@@ -51,7 +51,7 @@ MonoBehaviour:
   player: {fileID: 0}
   _trishot: {fileID: -3445168535201934407, guid: 74c2a7c2d404d16448e0b8fb292779c7, type: 3}
   enemySpeed: 4
-  _spawnTriShot: 1
+  _spawnTriShot: 0
   _trishotPickedUp: 0
 --- !u!212 &1008156287197785817
 SpriteRenderer:

@@ -17,9 +17,12 @@ public class SpawnManager : MonoBehaviour
         playerHasTriShot = false;
     }
 
-    void Update()
+    private void Update()
     {
-        
+        if(playerHasTriShot == true)
+        {
+            _enemyPrefab.GetComponent<EnemyController>().TrishotAcquired();
+        }
     }
 
     public void OnPlayerDeath()
