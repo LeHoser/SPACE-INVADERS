@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
     public GameObject enemy;
     public Player player;
 
-    [SerializeField] private TripleShot _trishot;
     public float enemySpeed;
+
+    [SerializeField] private TripleShot _trishot;
     [SerializeField] private bool _spawnTriShot;
     public bool _trishotPickedUp = false;
+    [SerializeField] private HealthPickUp _healthPickUp;
+    [SerializeField] private bool _spawnHealthPickUp;
 
     private void Awake()
     {
@@ -48,7 +51,9 @@ public class EnemyController : MonoBehaviour
 
             int spawnNumber = 10;
             int randomChance = Random.Range(1, 11);
-            print(randomChance);
+
+            int healthSpawnNumber = 15;
+            int healthSpawnChance = Random.Range(1, 16);
 
             if(spawnNumber > randomChance)
             {
@@ -88,6 +93,18 @@ public class EnemyController : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
+            if(healthSpawnNumber == healthSpawnChance)
+            {
+                Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, 0);
+                Destroy(other.gameObject);
+                Destroy(this.gameObject);
+                Instantiate(_healthPickUp, spawnPosition, Quaternion.identity);
+            }
+            else if(healthSpawnNumber > healthSpawnChance)
+            {
+                Destroy(other.gameObject);
+                Destroy(this.gameObject);
+            }
         }
 
         if (other.CompareTag("Player"))

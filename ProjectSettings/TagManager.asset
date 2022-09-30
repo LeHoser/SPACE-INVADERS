@@ -9,6 +9,7 @@ TagManager:
   - SpawnManager
   - Play Area
   - Trishot
+  - HealthPickUp
   layers:
   - Default
   - TransparentFX

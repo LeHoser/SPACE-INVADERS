@@ -49,10 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 6658374867603644901}
   player: {fileID: 0}
-  _trishot: {fileID: -3445168535201934407, guid: 74c2a7c2d404d16448e0b8fb292779c7, type: 3}
   enemySpeed: 4
+  _trishot: {fileID: -3445168535201934407, guid: 74c2a7c2d404d16448e0b8fb292779c7, type: 3}
   _spawnTriShot: 0
   _trishotPickedUp: 0
+  _healthPickUp: {fileID: -1310981835744486768, guid: 4a9277ec189f9574bb4bdbb815d68eb3, type: 3}
+  _spawnHealthPickUp: 0
 --- !u!212 &1008156287197785817
 SpriteRenderer:
   m_ObjectHideFlags: 0

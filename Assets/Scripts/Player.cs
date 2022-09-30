@@ -99,5 +99,10 @@ public class Player : MonoBehaviour
             //_trishot.OnPlayerPickUp();
             print("Player has picked up the upgrade");
         }
+        if(other.CompareTag("HealthPickUp"))
+        {
+            _playerHealth += 1;
+            Destroy(other.gameObject);
+        }
     }
 }

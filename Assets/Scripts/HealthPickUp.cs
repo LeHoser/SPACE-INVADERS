@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TripleShot : MonoBehaviour
+public class HealthPickUp : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private int _moveSpeed;
 
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
+    void Start()
     {
         
     }
