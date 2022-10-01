@@ -182,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 600569778}
   m_LocalRotation: {x: -0, y: -0, z: -0.00329734, w: 0.9999946}
   m_LocalPosition: {x: -3.38, y: -0.09, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.35}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -252,13 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a76b3921ae44043acbd3cd8f952657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 6.5
   _laserPrefab: {fileID: 2424984797568140721, guid: 22c4a4d0562fc5643803987a77aaadd3, type: 3}
-  _fireRate: 0.15
-  _canFire: -1
-  _playerHealth: 0
   _spawnManager: {fileID: 822250532}
   _enemy: {fileID: 6658374867603644901, guid: 8b0b440a00109c340845fdadd59bad0b, type: 3}
+  _playerHealth: 0
+  _playerSpeed: 6.5
+  _fireRate: 0.15
+  _canFire: -1
   _trishotUpgrade: 0
 --- !u!61 &600569782
 BoxCollider2D:
@@ -317,7 +317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 6658374867603644901, guid: 8b0b440a00109c340845fdadd59bad0b, type: 3}
   _enemyContainer: {fileID: 306594605}
-  _stopSpawning: 0
   playerHasTriShot: 0
 --- !u!4 &822250533
 Transform:
@@ -496,8 +495,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158941641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6261, y: 0.35424826, z: 0.05006106}
-  m_LocalScale: {x: 1.0733199, y: 1.1406, z: 1}
+  m_LocalPosition: {x: -1.6443, y: 0.35424826, z: 0.05006106}
+  m_LocalScale: {x: 1.0713879, y: 1.1406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1452718360}

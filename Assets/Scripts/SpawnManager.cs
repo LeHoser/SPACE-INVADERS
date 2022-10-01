@@ -7,8 +7,10 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _enemyContainer;
-    public bool _stopSpawning;
+
     public bool playerHasTriShot;
+
+    private bool _stopSpawning;
 
     void Start()
     {

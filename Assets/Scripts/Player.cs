@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _playerSpeed = 6.5f;
     [SerializeField] private GameObject _laserPrefab;
-    [SerializeField] private float _fireRate = 0.35f;
-    [SerializeField] private float _canFire = -1f;
-    [SerializeField] private int _playerHealth;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private GameObject _enemy;
-    [SerializeField] private bool _trishotUpgrade;
+
+    [Header("Player Stats")]
+    [SerializeField] private int _playerHealth;
+    [SerializeField] private float _playerSpeed = 6.5f;
+    [SerializeField] private float _fireRate = 0.35f;
+    [SerializeField] private float _canFire = -1f;
+
+    public bool _trishotUpgrade;
 
     private void Awake()
     {

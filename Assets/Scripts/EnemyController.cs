@@ -5,15 +5,14 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject enemy;
-    public Player player;
 
-    public float enemySpeed;
-
+    [SerializeField] public float enemySpeed;
     [SerializeField] private TripleShot _trishot;
-    [SerializeField] private bool _spawnTriShot;
-    public bool _trishotPickedUp = false;
     [SerializeField] private HealthPickUp _healthPickUp;
+    [SerializeField] private bool _spawnTriShot;
     [SerializeField] private bool _spawnHealthPickUp;
+    [SerializeField] private bool _trishotPickedUp = false;
+
 
     private void Awake()
     {
