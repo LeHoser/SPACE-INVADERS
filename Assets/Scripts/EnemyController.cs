@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        
+        _trishotPickedUp = false;
     }
 
     void Update()

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private GameObject _enemy;
+
+    [SerializeField] TextMeshProUGUI _livesText;
 
     [Header("Player Stats")]
     [SerializeField] private int _playerHealth;
@@ -18,13 +21,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-
+        _playerHealth = 3;
     }
 
     void Start()
     {
         _trishotUpgrade = false;
-        _playerHealth = 3;
         Cursor.lockState = CursorLockMode.Locked;
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
@@ -39,13 +41,16 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
-        if(Input.GetKeyDown(KeyCode.Space) && _trishotUpgrade == false &&  Time.time > _canFire)
+        _livesText.text = "Lives: " + _playerHealth.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && _trishotUpgrade == false && Time.time > _canFire)
         {
             _canFire = Time.time + _fireRate;
             Vector3 offSet = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
             Instantiate(_laserPrefab, offSet, Quaternion.identity);
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && _trishotUpgrade == true && Time.time > _canFire)
+
+        else if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && _trishotUpgrade == true && Time.time > _canFire)
         {
             _canFire = Time.time + _fireRate;
             Vector3 offSetLeft = new Vector3(transform.position.x - 0.2f, transform.position.y + 1, 0);
@@ -87,6 +92,7 @@ public class Player : MonoBehaviour
 
         if(_playerHealth < 1)
         {
+            _livesText.text = "Lives: " + _playerHealth.ToString();
             Destroy(this.gameObject);
             _spawnManager.OnPlayerDeath();
         }
